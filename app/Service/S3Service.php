@@ -35,8 +35,8 @@ class S3Service
         return $this->storage->put($dto->path.$dto->name, $dto->file);
     }
 
-    public function delete(S3DTO $dto)
+    public function delete(string $path)
     {
-        return $this->storage->delete($dto->path);
+        return $this->storage->delete($path);
     }
 }
