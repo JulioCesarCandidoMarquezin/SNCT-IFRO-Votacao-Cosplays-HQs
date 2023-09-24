@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(CosplayRepositoryInterface::class, CosplayEloquentORM::class);
+        $this->app->bind(VoteRepositoryInteface::class, VoteEloquentORM::class);
+        $this->app->bind(HQReposistoryInterface::class, HQEloquentORM::class);
     }
 
     /**
