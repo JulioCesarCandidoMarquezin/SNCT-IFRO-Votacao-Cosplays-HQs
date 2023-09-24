@@ -20,8 +20,10 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
     {
         $query = $this->model->query();
 
+        $tableColumns = Schema::getColumnListing($this->model->getTable());
+
         foreach ($filters as $column => $value) {
-            if (Schema::hasColumn($this->model->getTable(), $column)) {
+            if (in_array($column, $tableColumns)) {
                 if (is_array($value)) {
                     $query->whereIn($column, $value);
                 } elseif ($value !== null) {
@@ -39,8 +41,10 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
     {
         $query = $this->model->query();
 
+        $tableColumns = Schema::getColumnListing($this->model->getTable());
+
         foreach ($filters as $column => $value) {
-            if (Schema::hasColumn($this->model->getTable(), $column)) {
+            if (in_array($column, $tableColumns)) {
                 if (is_array($value)) {
                     $query->whereIn($column, $value);
                 } elseif ($value !== null) {
