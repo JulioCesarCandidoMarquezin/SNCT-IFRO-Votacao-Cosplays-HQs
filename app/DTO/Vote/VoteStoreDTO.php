@@ -4,7 +4,7 @@ namespace App\DTO\Vote;
 
 use App\Http\Requests\Votes\VoteStoreRequest;
 
-class StoreVoteDTO 
+class VoteStoreDTO 
 {
     public function __construct(
         public string $user_id,
