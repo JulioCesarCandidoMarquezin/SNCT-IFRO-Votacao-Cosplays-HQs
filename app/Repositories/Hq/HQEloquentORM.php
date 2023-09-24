@@ -71,7 +71,7 @@ class HQEloquentORM implements HQReposistoryInterface
     {
         $support = $this->model->create((array) $dto);
 
-        return $support; 
+        return (object) $support->toArray();
     }
 
     public function update(HQUpdateDTO $dto): stdClass|null
@@ -81,7 +81,7 @@ class HQEloquentORM implements HQReposistoryInterface
 
         $support->update((array) $dto);
 
-        return $support;
+        return (object) $support->toArray();
     }
 
     public function delete(string $id): void

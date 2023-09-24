@@ -64,16 +64,11 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
         return (object) $support->toArray();
     }
 
-    public function delete(string $id): void
-    {
-        $this->model->findOrFail($id)->delete();
-    }
-
     public function new(CosplayStoreDTO $dto): stdClass
     {
         $support = $this->model->create((array) $dto);
 
-        return $support; 
+        return (object) $support->toArray();
     }
 
     public function update(CosplayUpdateDTO $dto): stdClass|null
@@ -83,7 +78,11 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
 
         $support->update((array) $dto);
 
-        return $support; 
+        return (object) $support->toArray();
     }
 
+    public function delete(string $id): void
+    {
+        $this->model->findOrFail($id)->delete();
+    }
 }
