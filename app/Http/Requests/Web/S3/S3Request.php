@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\S3;
+namespace App\Http\Requests\Web\S3;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +23,6 @@ class S3Request extends FormRequest
     {
         return [
             'file' => 'required|file',
-            'path' => 'required|string|min:1|max:255',
             'name' => 'required|string|min:1|max:255',
         ];
     }

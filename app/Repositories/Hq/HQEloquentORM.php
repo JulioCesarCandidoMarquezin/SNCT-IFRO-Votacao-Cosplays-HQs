@@ -10,7 +10,6 @@ use App\Repositories\Pagination\PaginationInterface;
 use App\Repositories\Pagination\PaginationPresenter;
 use Illuminate\Support\Facades\Schema;
 use stdClass;
-
 class HQEloquentORM implements HQReposistoryInterface
 {
     public function __construct(
@@ -38,7 +37,6 @@ class HQEloquentORM implements HQReposistoryInterface
         return new PaginationPresenter($result);
     }
 
-    
     public function getAll(array $filters = []): array
     {
         $query = $this->model->query();
@@ -83,9 +81,8 @@ class HQEloquentORM implements HQReposistoryInterface
         $support = $this->model->find($dto->id);
         if(!$support) return null;
 
-        $support->update($dto);
+        $support->update((array) $dto);
 
         return (object) $support->toArray();
     }
-
 }
