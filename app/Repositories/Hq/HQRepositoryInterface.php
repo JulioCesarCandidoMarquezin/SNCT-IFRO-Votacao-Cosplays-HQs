@@ -4,7 +4,7 @@ namespace App\Repositories\Hq;
 
 use App\Repositories\Pagination\PaginationInterface;
 use App\DTO\HQ\HQStoreDTO;
-use App\DTO\HQ\UpdateHQDTO;
+use App\DTO\HQ\HQUpdateDTO;
 use stdClass;
 
 interface HQReposistoryInterface 
@@ -14,5 +14,5 @@ interface HQReposistoryInterface
     public function findOne(string $id): stdClass|null;
     public function delete(string $id): void;
     public function new(HQStoreDTO $dto): stdClass;
-    public function update(UpdateHQDTO $dto): stdClass|null;
+    public function update(HQUpdateDTO $dto): stdClass|null;
 }

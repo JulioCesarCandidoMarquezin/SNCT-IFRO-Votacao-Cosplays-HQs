@@ -3,7 +3,7 @@
 namespace App\Repositories\Cosplay;
 
 use App\DTO\HQ\HQStoreDTO;
-use App\DTO\HQ\UpdateHQDTO;
+use App\DTO\HQ\HQUpdateDTO;
 use App\Models\Hq;
 use App\Repositories\Hq\HQReposistoryInterface;
 use App\Repositories\Pagination\PaginationInterface;
@@ -74,7 +74,7 @@ class HQEloquentORM implements HQReposistoryInterface
         return $support->toArray();
     }
 
-    public function update(UpdateHQDTO $dto): stdClass|null
+    public function update(HQUpdateDTO $dto): stdClass|null
     {
         $support = $this->model->find($dto->id);
         if(!$support) return null;
