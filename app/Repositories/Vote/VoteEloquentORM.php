@@ -4,7 +4,6 @@ namespace App\Repositories\Vote;
 
 use App\DTO\Vote\VoteStoreDTO;
 use App\DTO\Vote\VoteUpdateDTO;
-use App\Http\Requests\Votes\VoteStoreRequest;
 use App\Models\Vote;
 
 class VoteEloquentORM implements VoteRepositoryInteface
@@ -13,7 +12,7 @@ class VoteEloquentORM implements VoteRepositoryInteface
         protected Vote $model,
     ) { }
 
-    public function vote(VoteStoreRequest $dto): bool
+    public function vote(VoteStoreDTO $dto): bool
     {
         $existingVote = $this->model
             ->where('user_id', $dto->user_id)
