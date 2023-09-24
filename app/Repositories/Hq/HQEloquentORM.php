@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Schema;
 use stdClass;
 class HQEloquentORM implements HQReposistoryInterface
 {
-    public function __construct(
-        protected Hq $model,
-    ) { }
+    protected Hq $model;
+
+    public function __construct(Hq $model)
+    {
+        $this->model = $model;
+    }
 
     public function paginate(int $page = 1, int $totalPerPage = 15, array $filters = []): PaginationInterface
     {
@@ -64,25 +67,25 @@ class HQEloquentORM implements HQReposistoryInterface
         return $support->toArray();
     }
 
-    public function delete(string $id): void
-    {
-        $this->model->findOrFail($id)->delete();
-    }
-
     public function new(HQStoreDTO $dto): stdClass
     {
         $support = $this->model->create((array) $dto);
 
-        return $support->toArray();
+        return $support; 
     }
 
     public function update(HQUpdateDTO $dto): stdClass|null
     {
         $support = $this->model->find($dto->id);
-        if(!$support) return null;
+        if (!$support) return null;
 
         $support->update((array) $dto);
 
-        return (object) $support->toArray();
+        return $support;
+    }
+
+    public function delete(string $id): void
+    {
+        $this->model->findOrFail($id)->delete();
     }
 }

@@ -10,7 +10,7 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->integaer('user_id');
+            $table->integer('user_id');
             $table->string('class_name');
             $table->string('item_type');
             $table->integer('item_id');

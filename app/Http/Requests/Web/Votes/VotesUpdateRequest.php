@@ -4,7 +4,7 @@ namespace App\Http\Requests\Votes;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VotesUpdateRequest extends FormRequest
+class VoteUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class VotesUpdateRequest extends FormRequest
             'id' => 'required|integer',
             'class_name' => 'required|string|max:255',
             'item_type' => 'required|string|max:255',
-            'item_id' => 'required|string',
+            'item_id' => 'required|integer',
         ];
     }
 }

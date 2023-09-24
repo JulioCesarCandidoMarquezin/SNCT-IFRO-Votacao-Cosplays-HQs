@@ -11,7 +11,7 @@ class Cosplay extends Model
 
     protected $fillable = [
         'autor_name',
-        'original_pinture_name',
+        'pinture_name',
         'class_name',
         'description',
         'image_path',

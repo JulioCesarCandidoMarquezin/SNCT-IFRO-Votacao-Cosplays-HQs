@@ -22,9 +22,9 @@ class HQUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->cosplay ?? $this->id;
-        Rule::unique('cosplays')->ignore($id);
-        $rules = [
+        $id = $this->hq ?? $this->id;
+        
+        return [
             'name' => 'required|string|max:255',
             'autor_name' => 'required|string|max:255',
             'class_name' => 'required|string|max:255',
@@ -34,7 +34,5 @@ class HQUpdateRequest extends FormRequest
             'image_path' => 'required|string|max:255',
 
         ];
-
-        return $rules;
     }
 }

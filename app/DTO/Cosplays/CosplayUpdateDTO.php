@@ -10,7 +10,7 @@ class CosplayUpdateDTO
         public string $id,
         public string $image_path,
         public string $autor_name,
-        public string $original_pinture_name,
+        public string $pinture_name,
         public string $description,
         public string $class_name,
     ) {}
@@ -21,7 +21,7 @@ class CosplayUpdateDTO
             $id ?? $request->id,
             $request->image_path,
             $request->autor_name,
-            $request->original_pinture_name,
+            $request->pinture_name,
             $request->description,
             $request->class_name,
         );

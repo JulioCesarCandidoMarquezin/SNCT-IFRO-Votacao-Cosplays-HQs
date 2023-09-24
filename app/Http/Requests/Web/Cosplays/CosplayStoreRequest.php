@@ -21,14 +21,13 @@ class CosplayStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'image_path' => 'string|unique:cosplays,image_path,' . $this->image_path,
+        return [
+            'image_path' => 'string|unique:cosplays,image_path',
             'autor_name' => 'string',
-            'original_pinture_name' => 'string',
+            'pinture_name' => 'string',
             'description' => 'string',
             'class_name' => 'string',
         ];
-
-        return $rules;
     }
+
 }

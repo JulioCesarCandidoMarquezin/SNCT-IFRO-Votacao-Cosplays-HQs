@@ -73,17 +73,17 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
     {
         $support = $this->model->create((array) $dto);
 
-        return (object) $support->toArray();
+        return $support; 
     }
 
     public function update(CosplayUpdateDTO $dto): stdClass|null
     {
         $support = $this->model->find($dto->id);
-        if(!$support) return null;
+        if (!$support) return null;
 
         $support->update((array) $dto);
 
-        return (object) $support->toArray();
+        return $support; 
     }
 
 }
