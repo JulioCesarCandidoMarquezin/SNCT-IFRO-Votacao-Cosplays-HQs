@@ -8,9 +8,12 @@ use App\Models\Vote;
 
 class VoteEloquentORM implements VoteRepositoryInteface
 {
-    public function __construct(
-        protected Vote $model,
-    ) { }
+    protected Vote $model;
+
+    public function __construct(Vote $model) 
+    { 
+        $this->model = $model;
+    }
 
     public function vote(VoteStoreDTO $dto): bool
     {

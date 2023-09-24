@@ -12,9 +12,12 @@ use stdClass;
 
 class CosplayEloquentORM implements CosplayRepositoryInterface
 {
-    public function __construct(
-        protected Cosplay $model,
-    ) { }
+    protected Cosplay $model;
+
+    public function __construct(Cosplay $model) 
+    { 
+        $this->model = $model;
+    }
 
     public function paginate(int $page = 1, int $totalPerPage = 15, array $filters = []): PaginationInterface
     {

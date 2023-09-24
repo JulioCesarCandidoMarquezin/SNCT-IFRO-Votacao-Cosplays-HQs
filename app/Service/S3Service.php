@@ -14,28 +14,27 @@ class S3Service
         $this->storage = Storage::disk('s3');
     }
 
-    public function getAll($prefix = null)
+    public function getAll($prefix = null): array
     {
         return $prefix ? $this->storage->files($prefix) : $this->storage->allFiles();
     }
 
-    public function findOne(string $path)
+    public function findOne(string $path): string|null
     {
         return $this->storage->get($path);
     }
 
-    public function store(S3DTO $dto)
+    public function store(S3DTO $dto): bool
     {
-        $extension = $dto->file->extension();
         return $this->storage->put($dto->path, $dto->file);
     }
 
-    public function update(S3DTO $dto)
+    public function update(S3DTO $dto): bool
     {
         return $this->storage->put($dto->path.$dto->name, $dto->file);
     }
 
-    public function delete(string $path)
+    public function delete(string $path): bool
     {
         return $this->storage->delete($path);
     }

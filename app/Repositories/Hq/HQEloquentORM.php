@@ -64,7 +64,7 @@ class HQEloquentORM implements HQReposistoryInterface
         $support = $this->model->find($id);
         if(!$support) return null;
 
-        return $support->toArray();
+        return (object) $support->toArray();
     }
 
     public function new(HQStoreDTO $dto): stdClass

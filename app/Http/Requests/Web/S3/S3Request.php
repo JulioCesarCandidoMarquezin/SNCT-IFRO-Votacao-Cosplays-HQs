@@ -23,6 +23,7 @@ class S3Request extends FormRequest
     {
         return [
             'file' => 'required|file',
+            'path' => 'string|min:1|max:255',
             'name' => 'required|string|min:1|max:255',
         ];
     }

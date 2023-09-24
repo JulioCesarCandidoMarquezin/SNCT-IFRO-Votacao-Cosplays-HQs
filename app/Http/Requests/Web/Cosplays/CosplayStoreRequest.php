@@ -26,7 +26,7 @@ class CosplayStoreRequest extends FormRequest
             'autor_name' => 'string',
             'pinture_name' => 'string',
             'description' => 'string',
-            'class_name' => 'string',
+            'class_name' => 'required|string',
         ];
     }
 

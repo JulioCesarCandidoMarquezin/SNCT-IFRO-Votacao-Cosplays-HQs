@@ -16,8 +16,8 @@ class S3DTO
     {
         return new self(
             $request->file,
-            $path,
-            $request->name.'.'.$request->file('file')->extension(),
+            $request->path ?? $path,
+            $request->name.'.'.$request->file->extension(),
         );
     }
 }
