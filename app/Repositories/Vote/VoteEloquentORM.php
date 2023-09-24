@@ -2,7 +2,8 @@
     
 namespace App\Repositories\Vote;
 
-use App\DTO\Vote\UpdateVoteDTO;
+use App\DTO\Vote\VoteStoreDTO;
+use App\DTO\Vote\VoteUpdateDTO;
 use App\Http\Requests\Votes\VoteStoreRequest;
 use App\Models\Vote;
 
@@ -32,7 +33,7 @@ class VoteEloquentORM implements VoteRepositoryInteface
         return true;
     }
 
-    public function score(UpdateVoteDTO $dto): int
+    public function score(VoteStoreDTO $dto): int
     {
         $totalVotes = $this->model
                         ->where('item_id', $dto->item_id)
@@ -42,7 +43,7 @@ class VoteEloquentORM implements VoteRepositoryInteface
         return $totalVotes;
     }
 
-    public function update(UpdateVoteDTO $dto): bool
+    public function update(VoteUpdateDTO $dto): bool
     {
         $vote = $this->model::findOrFail($dto->id);
 
@@ -55,7 +56,7 @@ class VoteEloquentORM implements VoteRepositoryInteface
         return true;
     }
 
-    public function delete(UpdateVoteDTO $dto): bool
+    public function delete(VoteUpdateDTO $dto): bool
     {
         $vote = $this->model::findOrFail($dto->id);
         $vote->delete();

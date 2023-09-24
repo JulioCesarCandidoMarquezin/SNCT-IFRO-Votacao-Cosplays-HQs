@@ -2,8 +2,8 @@
     
 namespace App\Repositories\Cosplay;
 
-use App\DTO\Cosplays\CreateCosplayDTO;
-use App\DTO\Cosplays\UpdateCosplayDTO;
+use App\DTO\Cosplays\CosplayStoreDTO;
+use App\DTO\Cosplays\CosplayUpdateDTO;
 use App\Models\Cosplay;
 use App\Repositories\Pagination\PaginationInterface;
 use App\Repositories\Pagination\PaginationPresenter;
@@ -65,14 +65,14 @@ class CosplayEloquentORM implements CosplayRepositoryInterface
         $this->model->findOrFail($id)->delete();
     }
 
-    public function new(CreateCosplayDTO $dto): stdClass
+    public function new(CosplayStoreDTO $dto): stdClass
     {
         $support = $this->model->create((array) $dto);
 
         return (object) $support->toArray();
     }
 
-    public function update(UpdateCosplayDTO $dto): stdClass|null
+    public function update(CosplayUpdateDTO $dto): stdClass|null
     {
         $support = $this->model->find($dto->id);
         if(!$support) return null;

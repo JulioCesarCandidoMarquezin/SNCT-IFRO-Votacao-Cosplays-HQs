@@ -2,9 +2,9 @@
     
 namespace App\Repositories\Cosplay;
 
+use App\DTO\Cosplays\CosplayStoreDTO;
+use App\DTO\Cosplays\CosplayUpdateDTO;
 use App\Repositories\Pagination\PaginationInterface;
-use App\DTO\Cosplays\CreateCosplayDTO;
-use App\DTO\Cosplays\UpdateCosplayDTO;
 use stdClass;
 
 interface CosplayRepositoryInterface
@@ -13,6 +13,6 @@ interface CosplayRepositoryInterface
     public function getAll(array $filters = []): array;
     public function findOne(string $id): stdClass|null;
     public function delete(string $id): void;
-    public function new(CreateCosplayDTO $dto): stdClass;
-    public function update(UpdateCosplayDTO $dto): stdClass|null;
+    public function new(CosplayStoreDTO $dto): stdClass;
+    public function update(CosplayUpdateDTO $dto): stdClass|null;
 }
