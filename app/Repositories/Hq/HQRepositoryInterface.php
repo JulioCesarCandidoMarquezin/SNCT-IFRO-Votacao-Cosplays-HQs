@@ -7,7 +7,7 @@ use App\DTO\HQ\HQStoreDTO;
 use App\DTO\HQ\HQUpdateDTO;
 use stdClass;
 
-interface HQReposistoryInterface 
+interface HQRepositoryInterface 
 {
     public function paginate(int $page = 1, int $totalPerPage = 15, array $filters = []): PaginationInterface;
     public function getAll(array $filters = []): array;

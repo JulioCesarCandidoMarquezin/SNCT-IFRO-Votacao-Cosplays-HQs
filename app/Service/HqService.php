@@ -4,14 +4,14 @@ namespace App\Service;
 
 use App\DTO\HQ\HQStoreDTO;
 use App\DTO\HQ\HQUpdateDTO;
-use App\Repositories\Hq\HQReposistoryInterface;
+use App\Repositories\Hq\HQRepositoryInterface;
 use App\Repositories\Pagination\PaginationInterface;
 use stdClass;
 
 class HqService
 {
     public function __construct(
-        protected HQReposistoryInterface $repository,
+        protected HQRepositoryInterface $repository,
     ) { }
 
     public function paginate(int $page = 1, int $totalPerPage = 15, array $filters = []): PaginationInterface

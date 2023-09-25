@@ -1,16 +1,17 @@
 <?php
     
-namespace App\Repositories\Cosplay;
+namespace App\Repositories\Hq;
 
 use App\DTO\HQ\HQStoreDTO;
 use App\DTO\HQ\HQUpdateDTO;
 use App\Models\Hq;
-use App\Repositories\Hq\HQReposistoryInterface;
+use App\Repositories\Hq\HQRepositoryInterface;
 use App\Repositories\Pagination\PaginationInterface;
 use App\Repositories\Pagination\PaginationPresenter;
 use Illuminate\Support\Facades\Schema;
 use stdClass;
-class HQEloquentORM implements HQReposistoryInterface
+
+class HQEloquentORM implements HQRepositoryInterface
 {
     protected Hq $model;
 

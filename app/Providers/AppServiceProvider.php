@@ -3,6 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Cosplay\CosplayEloquentORM;
+use App\Repositories\Cosplay\CosplayRepositoryInterface;
+use App\Repositories\Hq\HQEloquentORM;
+use App\Repositories\Hq\HQRepositoryInterface;
+use App\Repositories\Vote\VoteEloquentORM;
+use App\Repositories\Vote\VoteRepositoryInteface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(CosplayRepositoryInterface::class, CosplayEloquentORM::class);
         $this->app->bind(VoteRepositoryInteface::class, VoteEloquentORM::class);
-        $this->app->bind(HQReposistoryInterface::class, HQEloquentORM::class);
+        $this->app->bind(HQRepositoryInterface::class, HQEloquentORM::class);
     }
 
     /**
