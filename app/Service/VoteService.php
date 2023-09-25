@@ -17,7 +17,7 @@ class VoteService
         return $this->repository->vote($dto);
     }
 
-    public function score(VoteStoreDTO $dto): int
+    public function score(VoteUpdateDTO $dto): int
     {
         return $this->repository->score($dto);
     }
