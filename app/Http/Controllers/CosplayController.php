@@ -32,7 +32,6 @@ class CosplayController extends Controller
             $item->cosplay_url = $this->s3Service->findOne($item->cosplay_path); 
             $item->pinture_url = $this->s3Service->findOne($item->pinture_path); 
         }
-        dd($items);
         return view('teste', compact('items'));
     }
 
