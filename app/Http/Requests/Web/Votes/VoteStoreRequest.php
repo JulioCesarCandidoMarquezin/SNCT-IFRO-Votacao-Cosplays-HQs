@@ -22,8 +22,8 @@ class VoteStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'class_name' => 'required|string',
-            'item_type' => 'required|string',
+            'class_name' => 'required|string|min:1|max:255',
+            'item_type' => 'required|string|min:1|max:255',
             'item_id' => 'required|integer',
         ];
     }

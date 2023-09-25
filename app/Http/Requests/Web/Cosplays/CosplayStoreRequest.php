@@ -22,12 +22,12 @@ class CosplayStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'autor_name' => 'string|min:1|max:255',
-            'class_name' => 'string|min:1|max:255',
-            'pinture_name' => 'string|min:1|max:255',
-            'description' => 'string|min:1|max:2048',
-            'cosplay_path' => 'string|min:1|max:255',
-            'pinture_path' => 'string|min:1|max:255',
+            'autor_name' => 'required|string|min:1|max:255',
+            'class_name' => 'required|string|min:1|max:255',
+            'pinture_name' => 'required|string|min:1|max:255',
+            'description' => 'required|string|min:1|max:2048',
+            'cosplay_path' => 'required|string|min:1|max:255',
+            'pinture_path' => 'required|string|min:1|max:255',
         ];
     }
 

@@ -23,8 +23,8 @@ class VoteUpdateRequest extends FormRequest
     {
         return [
             'id' => 'required|integer',
-            'class_name' => 'required|string|max:255',
-            'item_type' => 'required|string|max:255',
+            'class_name' => 'required|string|min:1|max:255',
+            'item_type' => 'required|string||min:1|max:255',
             'item_id' => 'required|integer',
         ];
     }

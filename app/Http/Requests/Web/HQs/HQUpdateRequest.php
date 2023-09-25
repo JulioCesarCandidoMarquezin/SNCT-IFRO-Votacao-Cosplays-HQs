@@ -25,14 +25,13 @@ class HQUpdateRequest extends FormRequest
         $id = $this->hq ?? $this->id;
         
         return [
-            'name' => 'string|max:255',
-            'autor_name' => 'string|max:255',
-            'class_name' => 'string|max:255',
-            'tags' => 'array', 
+            'name' => 'required|string|max:255',
+            'autor_name' => 'required|string|max:255',
+            'class_name' => 'required|string|max:255',
+            'tags' => 'required|array', 
             'tags.*' => 'string|max:255', 
-            'description' => 'string',
-            'image_path' => 'string|max:255',
-
+            'description' => 'required|string',
+            'image_path' => 'required|string|max:255',
         ];
     }
 }
