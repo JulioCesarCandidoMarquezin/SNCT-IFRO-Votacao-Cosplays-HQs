@@ -22,13 +22,13 @@ class HQUpdateDTO
     public static function makeFromRequest(HQUpdateRequest $request): self
     {
         return new self(
-            $request->id,
-            $request->name,
-            $request->autor_name,
-            $request->class_name,
-            $request->tags,
-            $request->description,
-            $request->image_path,
+            id: $request->id,
+            name: $request->name,
+            autor_name: $request->autor_name,
+            class_name: $request->class_name,
+            tags: $request->tags,
+            description: $request->description,
+            image_path: $request->image_path,
         );
     }
 }
