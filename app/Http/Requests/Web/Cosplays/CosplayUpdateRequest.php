@@ -25,14 +25,15 @@ class CosplayUpdateRequest extends FormRequest
         $id = $this->cosplay ?? $this->id;
         
         return [
-            'image_path' => [
-                'string',
-                Rule::unique('cosplays', 'image_path')->ignore($id),
+            'autor_name' => 'string|min:1|max:255',
+            'class_name' => 'string|min:1|max:255',
+            'pinture_name' => 'string|min:1|max:255',
+            'description' => 'string|min:1|max:2048',
+            'cosplay_path' => [
+                'string|min:1|max:255',
+                Rule::unique('cosplays', 'cosplay_path')->ignore($id),
             ],
-            'autor_name' => 'string',
-            'pinture_name' => 'string',
-            'description' => 'string',
-            'class_name' => 'string',
+            'pinture_path' => 'string|min:1|max:255',
         ];
     }
 }

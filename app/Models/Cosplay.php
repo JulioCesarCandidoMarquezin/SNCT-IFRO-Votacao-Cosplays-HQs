@@ -14,6 +14,7 @@ class Cosplay extends Model
         'pinture_name',
         'class_name',
         'description',
-        'image_path',
+        'cosplay_path',
+        'pinture_path',
     ];
 }

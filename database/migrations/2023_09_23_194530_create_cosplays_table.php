@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('cosplays', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path')->unique();
-            $table->string('autor_name');
+            $table->string('autor_name')->nullable();
+            $table->string('class_name');
             $table->string('pinture_name')->nullablle();
             $table->text('description')->nullablle();
-            $table->string('class_name');
+            $table->string('cosplay_path')->unique();
+            $table->string('pinture_path')->unique();
             $table->timestamps();
         });
     }
