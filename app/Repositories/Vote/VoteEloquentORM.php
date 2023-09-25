@@ -35,12 +35,9 @@ class VoteEloquentORM implements VoteRepositoryInteface
         return true;
     }
 
-    public function score(VoteStoreDTO $dto): int
+    public function score(VoteUpdateDTO $dto): int
     {
-        $totalVotes = $this->model
-                        ->where('item_id', $dto->item_id)
-                        ->where('item_type', $dto->item_type)
-                        ->count();
+        $totalVotes = $this->model->where('id', $dto->id)->count();
                         
         return $totalVotes;
     }

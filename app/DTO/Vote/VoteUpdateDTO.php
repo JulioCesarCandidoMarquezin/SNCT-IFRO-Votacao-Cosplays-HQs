@@ -2,7 +2,7 @@
     
 namespace App\DTO\Vote;
 
-use App\Http\Requests\Votes\VoteStoreRequest;
+use App\Http\Requests\Votes\VoteUpdateRequest;
 
 class VoteUpdateDTO 
 {
@@ -14,7 +14,7 @@ class VoteUpdateDTO
         public string $item_id,
     ) { }
 
-    public static function makeFromRequest(VoteStoreRequest $request): self
+    public static function makeFromRequest(VoteUpdateRequest $request): self
     {
         return new self(
             $request->id,

@@ -8,7 +8,7 @@ use App\DTO\Vote\VoteUpdateDTO;
 interface VoteRepositoryInteface
 {
     public function vote(VoteStoreDTO $dto): bool;
-    public function score(VoteStoreDTO $dto): int;
+    public function score(VoteUpdateDTO $dto): int;
     public function update(VoteUpdateDTO $dto): bool;
     public function delete(VoteUpdateDTO $dto): bool;
 }

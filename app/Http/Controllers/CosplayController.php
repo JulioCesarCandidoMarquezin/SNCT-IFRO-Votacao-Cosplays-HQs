@@ -27,26 +27,33 @@ class CosplayController extends Controller
             $totalPerPage = $request->get('totalPerPage', 15),
             filters: $request->get('filters', []),
         );   
-        $images = [];
-        foreach ($items->items() as $item) {
-            $images[] = $this->s3Service->findOne($item->image_path);
+        foreach($items as $item)
+        {
+            $item->cosplay_url = $this->s3Service->findOne($item->cosplay_path); 
+            $item->pinture_url = $this->s3Service->findOne($item->pinture_path); 
         }
-        return view('teste', compact('items', 'images'));
+        dd($items);
+        return view('teste', compact('items'));
+    }
+
+    public function storeForm()
+    {
+        return view('cosplay_form');
     }
 
     public function store(S3Request $s3request, CosplayStoreRequest $storeRequest)
     {
-        $image_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'cosplays'));
-        $storeRequest['image_path'] = $image_path;
+        $cosplay_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'cosplays'));
+        $storeRequest['cosplay_path'] = $cosplay_path;
         $this->service->store(CosplayStoreDTO::makeFromRequest($storeRequest));
         return redirect()->back();
     }
 
     public function show(string $id)
     {
-        $cosplay = $this->service->findOne($id);
-        $image = $this->s3Service->findOne($cosplay->image_path);
-        return $image;
+        $cosplay_data = $this->service->findOne($id);
+        $cosplay = $this->s3Service->findOne($cosplay_data->cosplay_path);
+        return $cosplay;
     }
 
     public function update(CosplayUpdateRequest $request, string $id)

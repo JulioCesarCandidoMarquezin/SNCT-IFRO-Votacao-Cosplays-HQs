@@ -17,14 +17,15 @@ class VoteController extends Controller
     public function vote(VoteStoreRequest $request)
     {
         $voted = $this->service->vote(VoteStoreDTO::makeFromRequest($request));
+        
         if($voted) return redirect()->back()->with('Success', 'Voto registrado com sucesso!');
         return redirect()->back()->with('Error', 'Você já votou nessa turma.');
     }
 
-    function score(VoteStoreRequest $request)
+    function score(VoteUpdateRequest $request)
     {
-        $totalVotos = $this->service->score(VoteStoreDTO::makeFromRequest($request));
-
+        $totalVotos = $this->service->score(VoteUpdateDTO::makeFromRequest($request));
+        
         return $totalVotos;
     }
 
