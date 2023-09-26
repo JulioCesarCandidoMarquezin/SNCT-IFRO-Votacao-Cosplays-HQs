@@ -26,6 +26,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - composer require league/flysystem-aws-s3-v3 "^3.0" --with-all-dependencies
 - composer require laravel/breeze
 - php artisan breeze:install
+- composer require laravel/sanctum
 
 ## Learning Laravel
 
