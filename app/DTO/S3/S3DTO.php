@@ -15,9 +15,9 @@ class S3DTO
     public static function makeFromRequest(S3Request $request, $path): self
     {
         return new self(
-            $request->file,
-            $request->path ?? $path,
-            $request->name.'.'.$request->file->extension(),
+            file: $request->file,
+            path: $request->path ?? $path,
+            name: $request->name.'.'.$request->file->extension(),
         );
     }
 }

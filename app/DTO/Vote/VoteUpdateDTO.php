@@ -17,11 +17,11 @@ class VoteUpdateDTO
     public static function makeFromRequest(VoteUpdateRequest $request): self
     {
         return new self(
-            $request->id,
-            auth()->id(),
-            $request->class_name,
-            $request->item_type,
-            $request->item_id,
+            id: $request->id,
+            user_id: auth()->id(),
+            class_name: $request->class_name,
+            item_type: $request->item_type,
+            item_id:$request->item_id,
         );
     }
 }

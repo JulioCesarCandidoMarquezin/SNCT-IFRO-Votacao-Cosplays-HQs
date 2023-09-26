@@ -16,10 +16,10 @@ class VoteStoreDTO
     public static function makeFromRequest(VoteStoreRequest $request): self
     {
         return new self(
-            auth()->id(),
-            $request->class_name,
-            $request->item_type,
-            $request->item_id,
+            user_id: auth()->id(),
+            class_name: $request->class_name,
+            item_type: $request->item_type,
+            item_id: $request->item_id,
         );
     }
 }
