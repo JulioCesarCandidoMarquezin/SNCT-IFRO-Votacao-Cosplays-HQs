@@ -27,15 +27,15 @@ class HqController extends Controller
             filters: $request->get('filters', []),
         );   
         foreach ($items->items() as $item) {
-            $item->images = $this->s3Service->getAll($item->image_path);
+            $item->images = $this->s3Service->getAll($item->images_path);
         }
         return view('teste', compact('items'));
     }
 
     public function store(S3Request $s3request, HQStoreRequest $storeRequest)
     {
-        $image_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'quadrinhos'));
-        $storeRequest['image_path'] = $image_path;
+        $images_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'quadrinhos'));
+        $storeRequest['images_path'] = $images_path;
         $this->service->store(HQStoreDTO::makeFromRequest($storeRequest));
         return redirect()->back();
     }
@@ -43,7 +43,7 @@ class HqController extends Controller
     public function show(string $id)
     {
         $hq_data = $this->service->findOne($id);
-        $hq_data->image = $this->s3Service->getAll($hq_data->image_path);
+        $hq_data->images = $this->s3Service->getAll($hq_data->images_path);
         return redirect()->back()->with('data', $hq_data);
     }
 
