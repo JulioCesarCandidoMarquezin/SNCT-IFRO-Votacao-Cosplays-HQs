@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Web\S3;
+namespace App\Http\Requests\S3;
 
 use Illuminate\Foundation\Http\FormRequest;
 

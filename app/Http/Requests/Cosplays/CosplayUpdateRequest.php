@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Web\Cosplays;
+namespace App\Http\Requests\Cosplays;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
