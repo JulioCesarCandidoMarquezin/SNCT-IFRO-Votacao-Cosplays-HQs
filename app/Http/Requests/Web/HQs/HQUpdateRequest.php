@@ -3,7 +3,6 @@
 namespace App\Http\Requests\HQs;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class HQUpdateRequest extends FormRequest
 {
