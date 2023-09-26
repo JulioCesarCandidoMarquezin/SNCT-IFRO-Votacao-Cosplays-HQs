@@ -17,23 +17,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/s3/{id}', [CosplayController::class, 'show']);
     Route::post('/s3', [CosplayController::class, 'store'])->name('upload');
 
-    Route::post('/vote', [VoteController::class, 'vote'])->name('vote.vote');
-    Route::get('/vote/score', [VoteController::class, 'score'])->name('vote.score');
-    Route::get('/vote/edit', [VoteController::class, 'edit'])->name('vote.edit');
-    Route::put('/vote/update', [VoteController::class, 'update'])->name('vote.update');
-    Route::delete('/vote/delete', [VoteController::class, 'delete'])->name('vote.delete');
+    Route::post('/votes', [VoteController::class, 'vote'])->name('votes.vote');
+    Route::get('/votes/score', [VoteController::class, 'score'])->name('votes.score');
+    Route::put('/votes/update', [VoteController::class, 'update'])->name('votes.update');
+    Route::delete('/votes/delete', [VoteController::class, 'delete'])->name('votes.delete');
 
-    Route::get('/cosplay', [CosplayController::class, 'index'])->name('cosplay.index');
-    Route::get('/cosplay/{id}', [CosplayController::class, 'show'])->name('cosplay.show');
-    Route::post('/cosplay/create', [CosplayController::class, 'create'])->name('cosplay.create');
-    Route::put('/cosplay/{id}', [CosplayController::class, 'update'])->name('cosplay.update');
-    Route::delete('/cosplay/{id}', [CosplayController::class, 'delete'])->name('cosplay.delete');
+    Route::get('/cosplays', [CosplayController::class, 'index'])->name('cosplay.index');
+    Route::get('/cosplays/{id}', [CosplayController::class, 'show'])->name('cosplay.show');
+    Route::post('/cosplays/create', [CosplayController::class, 'store'])->name('cosplay.store');
+    Route::put('/cosplays/{id}', [CosplayController::class, 'update'])->name('cosplay.update');
+    Route::delete('/cosplays/{id}', [CosplayController::class, 'delete'])->name('cosplay.delete');
 
-    Route::get('/hq', [HqController::class, 'index'])->name('hq.index');
-    Route::get('/hq/{id}', [HqController::class, 'show'])->name('hq.show');
-    Route::post('/hq/create', [HqController::class, 'create'])->name('hq.create');
-    Route::put('/hq/{id}', [HqController::class, 'update'])->name('hq.update');
-    Route::delete('/hq/{id}', [HqController::class, 'delete'])->name('hq.delete');
+    Route::get('/hqs', [HqController::class, 'index'])->name('hq.index');
+    Route::get('/hqs/{id}', [HqController::class, 'show'])->name('hq.show');
+    Route::post('/hqs/create', [HqController::class, 'create'])->name('hq.create');
+    Route::put('/hqs/{id}', [HqController::class, 'update'])->name('hq.update');
+    Route::delete('/hqs/{id}', [HqController::class, 'delete'])->name('hq.delete');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
