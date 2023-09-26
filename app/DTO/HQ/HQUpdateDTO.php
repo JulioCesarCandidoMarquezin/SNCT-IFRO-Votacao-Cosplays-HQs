@@ -16,7 +16,7 @@ class HQUpdateDTO
          */
         public array $tags,
         public string $description,
-        public string $image_path,
+        public string $images_path,
     ) { }
 
     public static function makeFromRequest(HQUpdateRequest $request): self
@@ -28,7 +28,7 @@ class HQUpdateDTO
             class_name: $request->class_name,
             tags: $request->tags,
             description: $request->description,
-            image_path: $request->image_path,
+            images_path: $request->images_path,
         );
     }
 }

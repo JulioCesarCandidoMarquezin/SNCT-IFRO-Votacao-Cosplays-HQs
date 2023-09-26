@@ -5,7 +5,7 @@ namespace App\Repositories\Vote;
 use App\DTO\Vote\VoteStoreDTO;
 use App\DTO\Vote\VoteUpdateDTO;
 
-interface VoteRepositoryInteface
+interface VoteRepositoryInterface
 {
     public function vote(VoteStoreDTO $dto): bool;
     public function score(VoteUpdateDTO $dto): int;

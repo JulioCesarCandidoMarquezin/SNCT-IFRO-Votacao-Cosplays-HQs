@@ -6,7 +6,7 @@ use App\DTO\Vote\VoteStoreDTO;
 use App\DTO\Vote\VoteUpdateDTO;
 use App\Models\Vote;
 
-class VoteEloquentORM implements VoteRepositoryInteface
+class VoteEloquentORM implements VoteRepositoryInterface
 {
     protected Vote $model;
 

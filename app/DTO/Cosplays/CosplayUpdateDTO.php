@@ -2,7 +2,7 @@
     
 namespace App\DTO\Cosplays;
 
-use App\Http\Requests\Web\Cosplays\CosplayUpdateRequest;
+use App\Http\Requests\Cosplays\CosplayUpdateRequest;
 
 class CosplayUpdateDTO 
 {

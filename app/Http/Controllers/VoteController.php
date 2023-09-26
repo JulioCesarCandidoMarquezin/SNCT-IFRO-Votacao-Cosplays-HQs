@@ -24,9 +24,9 @@ class VoteController extends Controller
 
     function score(VoteUpdateRequest $request)
     {
-        $totalVotos = $this->service->score(VoteUpdateDTO::makeFromRequest($request));
+        $totalVotes = $this->service->score(VoteUpdateDTO::makeFromRequest($request));
         
-        return $totalVotos;
+        return redirect()->back()->with('totalVotes', $totalVotes);
     }
 
     public function update(VoteUpdateRequest $request)

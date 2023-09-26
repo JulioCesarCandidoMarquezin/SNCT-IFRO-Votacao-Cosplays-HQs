@@ -30,7 +30,7 @@ class HQUpdateRequest extends FormRequest
             'tags' => 'required|array', 
             'tags.*' => 'string|max:255', 
             'description' => 'required|string',
-            'image_path' => 'required|string|max:255',
+            'images_path' => 'required|string|max:255',
         ];
     }
 }

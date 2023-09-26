@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('class_name');
             $table->json('tags');
             $table->text('description');
-            $table->string('image_path');
+            $table->string('images_path');
             $table->timestamps();
         });
     }

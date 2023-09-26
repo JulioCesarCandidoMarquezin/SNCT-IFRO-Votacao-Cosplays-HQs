@@ -8,7 +8,7 @@ use App\Repositories\Cosplay\CosplayRepositoryInterface;
 use App\Repositories\Hq\HQEloquentORM;
 use App\Repositories\Hq\HQRepositoryInterface;
 use App\Repositories\Vote\VoteEloquentORM;
-use App\Repositories\Vote\VoteRepositoryInteface;
+use App\Repositories\Vote\VoteRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(CosplayRepositoryInterface::class, CosplayEloquentORM::class);
-        $this->app->bind(VoteRepositoryInteface::class, VoteEloquentORM::class);
+        $this->app->bind(VoteRepositoryInterface::class, VoteEloquentORM::class);
         $this->app->bind(HQRepositoryInterface::class, HQEloquentORM::class);
     }
 

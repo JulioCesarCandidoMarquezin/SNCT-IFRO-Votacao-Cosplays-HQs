@@ -4,12 +4,12 @@ namespace App\Service;
 
 use App\DTO\Vote\VoteStoreDTO;
 use App\DTO\Vote\VoteUpdateDTO;
-use App\Repositories\Vote\VoteRepositoryInteface;
+use App\Repositories\Vote\VoteRepositoryInterface;
 
 class VoteService
 {
     public function __construct(
-        protected VoteRepositoryInteface $repository,
+        protected VoteRepositoryInterface $repository,
     ) { }
 
     public function vote(VoteStoreDTO $dto): bool

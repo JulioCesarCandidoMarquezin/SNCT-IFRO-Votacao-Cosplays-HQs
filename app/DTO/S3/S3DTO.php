@@ -2,7 +2,7 @@
     
 namespace App\DTO\S3;
 
-use App\Http\Requests\Web\S3\S3Request;
+use App\Http\Requests\S3\S3Request;
 
 class S3DTO 
 {
