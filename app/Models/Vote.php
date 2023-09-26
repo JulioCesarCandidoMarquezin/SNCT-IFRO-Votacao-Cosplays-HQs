@@ -10,6 +10,6 @@ class Vote extends Model
 
     public function item()
     {
-        return $this->morphTo('item', 'item_type', 'item_id');
+        return $this->morphTo('class_name', 'item_type', 'item_id');
     }
 }
