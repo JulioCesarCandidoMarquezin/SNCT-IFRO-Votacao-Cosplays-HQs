@@ -25,10 +25,8 @@ class HQStoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'autor_name' => 'required|string|max:255',
             'class_name' => 'required|string|max:255',
-            'tags' => 'required|array',  
-            'tags.*' => 'string|max:255', 
             'description' => 'required|string',
-            'images_path' => 'required|string|max:255',
+            'images_path' => 'string|max:255',
         ];
     }
 

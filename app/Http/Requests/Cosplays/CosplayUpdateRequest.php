@@ -29,10 +29,7 @@ class CosplayUpdateRequest extends FormRequest
             'class_name' => 'required|string|min:1|max:255',
             'pinture_name' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:2048',
-            'cosplay_path' => [
-                'required|string|min:1|max:255',
-                Rule::unique('cosplays', 'cosplay_path')->ignore($id),
-            ],
+            'cosplay_path' => 'required|string|min:1|max:255',
             'pinture_path' => 'required|string|min:1|max:255',
         ];
     }

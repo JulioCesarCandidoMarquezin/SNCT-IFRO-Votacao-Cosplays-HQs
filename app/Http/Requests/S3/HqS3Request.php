@@ -4,7 +4,7 @@ namespace App\Http\Requests\S3;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class S3Request extends FormRequest
+class HqS3Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,8 @@ class S3Request extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|file',
-            'path' => 'string|min:1|max:255',
-            'name' => 'required|string|min:1|max:255',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'path' => 'string',
         ];
     }
 }

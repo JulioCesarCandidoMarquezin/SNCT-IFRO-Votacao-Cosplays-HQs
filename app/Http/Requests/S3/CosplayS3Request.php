@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Cosplays;
+namespace App\Http\Requests\S3;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CosplayStoreRequest extends FormRequest
+class CosplayS3Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,9 @@ class CosplayStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'autor_name' => 'required|string|min:1|max:255',
-            'class_name' => 'required|string|min:1|max:255',
-            'pinture_name' => 'required|string|min:1|max:255',
-            'description' => 'required|string|min:1|max:2048',
-            'cosplay_path' => 'string|min:1|max:255',
-            'pinture_path' => 'string|min:1|max:255',
+            'cosplay' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'pinture' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'path' => 'string',
         ];
     }
-
 }
