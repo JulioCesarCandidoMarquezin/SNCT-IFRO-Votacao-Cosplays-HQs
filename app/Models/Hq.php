@@ -9,9 +9,7 @@ class Hq extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'author_name', 'class_name', 'tags', 'description', 'images_path'];
+    public $timestamps = false;
 
-    protected $casts = [
-        'tags' => 'json',  
-    ];
+    protected $fillable = ['name', 'autor_name', 'class_name', 'description', 'images_path'];
 }

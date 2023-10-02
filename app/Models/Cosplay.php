@@ -9,6 +9,8 @@ class Cosplay extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'autor_name',
         'pinture_name',

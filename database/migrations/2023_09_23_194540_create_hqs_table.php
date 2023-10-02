@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('hqs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('author_name');
+            $table->string('autor_name');
             $table->string('class_name');
-            $table->json('tags');
-            $table->text('description');
-            $table->string('images_path');
-            $table->timestamps();
+            $table->text('description'); 
+            $table->string('images_path'); // Local onde estão as imagens dessa hq
         });
     }
 

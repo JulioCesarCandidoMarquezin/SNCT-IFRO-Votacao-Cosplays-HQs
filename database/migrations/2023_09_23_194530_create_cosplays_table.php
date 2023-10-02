@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('description')->nullablle();
             $table->string('cosplay_path')->unique();
             $table->string('pinture_path');
-            $table->timestamps();
         });
     }
 

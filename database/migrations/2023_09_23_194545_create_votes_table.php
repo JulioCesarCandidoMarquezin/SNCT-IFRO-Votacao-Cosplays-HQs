@@ -14,7 +14,6 @@ class CreateVotesTable extends Migration
             $table->string('class_name');
             $table->string('item_type');
             $table->integer('item_id');
-            $table->timestamps();
             $table->unique(['user_id', 'class_name', 'item_type']);
         });
     }
