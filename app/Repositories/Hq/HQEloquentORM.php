@@ -8,6 +8,7 @@ use App\Models\Hq;
 use App\Repositories\Hq\HQRepositoryInterface;
 use App\Repositories\Pagination\PaginationInterface;
 use App\Repositories\Pagination\PaginationPresenter;
+use App\Utils\Utils;
 use Illuminate\Support\Facades\Schema;
 use stdClass;
 
@@ -26,15 +27,7 @@ class HQEloquentORM implements HQRepositoryInterface
 
         $tableColumns = Schema::getColumnListing($this->model->getTable());
 
-        foreach ($filters as $column => $value) {
-            if (in_array($column, $tableColumns)) {
-                if (is_array($value)) {
-                    $query->whereIn($column, $value);
-                } elseif ($value !== null) {
-                    $query->where($column, 'like', "%{$value}%");
-                }
-            }
-        }
+        Utils::dinamicFilter($filters, $tableColumns, $query);
 
         $result = $query->paginate($totalPerPage, ['*'], 'page', $page);
 
@@ -47,42 +40,34 @@ class HQEloquentORM implements HQRepositoryInterface
 
         $tableColumns = Schema::getColumnListing($this->model->getTable());
 
-        foreach ($filters as $column => $value) {
-            if (in_array($column, $tableColumns)) {
-                if (is_array($value)) {
-                    $query->whereIn($column, $value);
-                } elseif ($value !== null) {
-                    $query->where($column, 'like', "%{$value}%");
-                }
-            }
-        }
+        Utils::dinamicFilter($filters, $tableColumns, $query);
 
         return $query->get()->toArray();
     }
 
     public function findOne(string $id): stdClass|null
     {
-        $support = $this->model->find($id);
-        if(!$support) return null;
+        $hq = $this->model->findOrFail($id);
+        if(!$hq) return null;
 
-        return (object) $support->toArray();
+        return (object) $hq->toArray();
     }
 
     public function new(HQStoreDTO $dto): stdClass
     {
-        $support = $this->model->create((array) $dto);
+        $hq = $this->model->create((array) $dto);
 
-        return (object) $support->toArray();
+        return (object) $hq->toArray();
     }
 
     public function update(HQUpdateDTO $dto): stdClass|null
     {
-        $support = $this->model->find($dto->id);
-        if (!$support) return null;
+        $hq = $this->model->find($dto->id);
+        if (!$hq) return null;
 
-        $support->update((array) $dto);
+        $hq->update((array) $dto);
 
-        return (object) $support->toArray();
+        return (object) $hq->toArray();
     }
 
     public function delete(string $id): void
