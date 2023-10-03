@@ -13,15 +13,42 @@
     </head>
     <body>
         <ul>
+          {{-- @php
+            $carouselImages = [];
+            foreach ($items as $item) {
+              $carouselImages[] = $item->image_url;
+            }    
+          @endphp
+          <x-carousel :images="$carouselImages" /> --}}
             @foreach ($items->items() as $item)
-                <li>
-                    <details>
+
+              @foreach($item->images_url as $image_url)
+                <img src="{{ $image_url }}" alt="Image">
+              @endforeach
+              <form action="{{route('hqs.destroy', $item->id )}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Deletar</button>
+              </form>
+                {{-- <li> --}}
+                    {{-- <details>
                         <summary>
                             Imagem
-                        </summary>
-                        <img src="{{ route('cosplay.show', $item->id) }}" alt="File">
-                    </details>
-                </li>
+                        </summary> --}}
+
+                        {{-- @if ($item->cosplay)
+                          <img src="{{ $item->cosplay }}" alt="File">
+                        @else --}}
+                            
+                        {{-- @endif --}}
+
+                        {{-- <form action="{{ route('cosplays.destroy', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Deletar</button>
+                        </form> --}}
+                    {{-- </details> --}}
+                {{-- </li> --}}
             @endforeach
         </ul>
         {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
