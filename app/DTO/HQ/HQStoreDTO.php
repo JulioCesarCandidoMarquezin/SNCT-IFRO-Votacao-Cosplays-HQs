@@ -10,10 +10,6 @@ class HQStoreDTO
         public string $name,
         public string $autor_name,
         public string $class_name,
-        /**
-         * @var string[]
-         */
-        public array $tags,
         public string $description,
         public string $images_path,
     ) { }
@@ -24,7 +20,6 @@ class HQStoreDTO
             name: $request->name,
             autor_name: $request->autor_name,
             class_name: $request->class_name,
-            tags: $request->tags,
             description: $request->description,
             images_path: $request->images_path,
         );
