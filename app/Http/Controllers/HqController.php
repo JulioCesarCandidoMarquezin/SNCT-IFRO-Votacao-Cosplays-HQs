@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\DTO\HQ\HQStoreDTO;
 use App\DTO\HQ\HQUpdateDTO;
-use App\DTO\S3\S3DTO;
+use App\DTO\S3\HqS3DTO;
 use App\Http\Requests\HQs\HQStoreRequest;
 use App\Http\Requests\HQs\HQUpdateRequest;
-use App\Http\Requests\S3\S3Request;
+use App\Http\Requests\S3\HqS3Request;
 use App\Service\HqService;
 use App\Service\S3Service;
+use App\Utils\Utils;
 use Illuminate\Http\Request;
 
 class HqController extends Controller
@@ -27,42 +28,64 @@ class HqController extends Controller
             filters: $request->get('filters', []),
         );   
         foreach ($items->items() as $item) {
-            $item->images = $this->s3Service->getAll($item->images_path);
+            $item->images_url = Utils::arraySort($this->s3Service->getAllUrlsFromPath($item->images_path));
         }
         return view('teste', compact('items'));
     }
 
-    public function store(S3Request $s3request, HQStoreRequest $storeRequest)
-    {
-        $images_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'quadrinhos'));
-        $storeRequest['images_path'] = $images_path;
-        $this->service->store(HQStoreDTO::makeFromRequest($storeRequest));
-        return redirect()->back();
-    }
-
     public function show(string $id)
     {
-        $hq_data = $this->service->findOne($id);
-        $hq_data->images = $this->s3Service->getAll($hq_data->images_path);
-        return redirect()->back()->with('data', $hq_data);
+        $datas = $this->service->findOne($id);
+        $datas->images = $this->s3Service->getAll($datas->images_path);
+        return view('hqs.show')->with('datas', $datas);
+    }
+
+    public function create() 
+    {
+        return view('upload.hqs')->with('route', 'hqs.store');;
+    }
+
+    public function store(HqS3Request $s3request, HQStoreRequest $storeRequest)
+    {
+        $images_path = $this->s3Service->store(HqS3DTO::makeFromRequest($s3request, 'hqs'));
+        $storeRequest['images_path'] = $images_path[0];
+        $this->service->store(HQStoreDTO::makeFromRequest($storeRequest));
+        return redirect()
+                ->route('hqs.index')
+                ->with('message', 'Cadastrado com sucesso!'); 
+    }
+
+    public function edit($id)
+    {
+        $hq = $this->service->findOne($id);
+        if($hq) return view('hqs.edit');
+
+        return back()->with('message', 'Não foi possível encontrar o item.');
     }
 
     public function update(HQUpdateRequest $request, string $id)
     {
-        $this->service->update(
+        $hq = $this->service->update(
             HQUpdateDTO::makeFromRequest($request, $id)
         );
-        return redirect()->back()->with('sucess', 'Atualizado com sucesso');
+
+        if($hq) {
+            return redirect()
+                ->route('hqs.index')
+                ->with('message', 'Atualizado com sucesso!');
+        }
+
+        return back()->with('message', 'Não foi possível atualizar');
     }
 
     public function destroy(string $id)
     {
-        /**
-         *@var Hq
-         */
-        $hq = $this->service->findOne($id);
-        $this->s3Service->delete($hq->hq_path);
-        $hq->delete();
-        return redirect()->back()->with('sucess', 'Deletado com sucesso');
+        $deleted = $this->service->delete($id);
+
+        if($deleted) {
+            return redirect()->route('cosplays.index')->with('sucess', 'Deletado com sucesso');
+        }
+        
+        return back()->with('message', 'Não foi possível deletar');
     }
 }

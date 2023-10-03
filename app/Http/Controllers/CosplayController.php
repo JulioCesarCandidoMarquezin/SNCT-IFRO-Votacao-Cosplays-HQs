@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\DTO\Cosplays\CosplayStoreDTO;
 use App\DTO\Cosplays\CosplayUpdateDTO;
-use App\DTO\S3\S3DTO;
+use App\DTO\S3\CosplayS3DTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cosplays\CosplayStoreRequest;
 use App\Http\Requests\Cosplays\CosplayUpdateRequest;
-use App\Http\Requests\S3\S3Request;
+use App\Http\Requests\S3\CosplayS3Request;
 use App\Service\CosplayService;
 use App\Service\S3Service;
 use Illuminate\Http\Request;
@@ -27,46 +27,70 @@ class CosplayController extends Controller
             $totalPerPage = $request->get('totalPerPage', 15),
             filters: $request->get('filters', []),
         );   
-        foreach($items as $item){
-            $item->cosplay_url = $this->s3Service->findOne($item->cosplay_path); 
-            $item->pinture_url = $this->s3Service->findOne($item->pinture_path); 
+        foreach($items->items() as $item){
+            $item->cosplay = $this->s3Service->findOne($item->cosplay_path); 
+            $item->pinture = $this->s3Service->findOne($item->pinture_path); 
         }
         return view('teste', compact('items'));
     }
 
-    public function store(S3Request $s3request, CosplayStoreRequest $storeRequest)
-    {
-        dd('store');
-        $cosplay_path = $this->s3Service->store(S3DTO::makeFromRequest($s3request, 'cosplays'));
-        $storeRequest['cosplay_path'] = $cosplay_path;
-        $this->service->store(CosplayStoreDTO::makeFromRequest($storeRequest));
-        return redirect()->back();
-    }
-
     public function show(string $id)
     {
-        $cosplay_data = $this->service->findOne($id);
-        $cosplay_data->cosplay = $this->s3Service->findOne($cosplay_data->cosplay_path);
-        $cosplay_data->pinture = $this->s3Service->findOne($cosplay_data->pinture_path);
-        return redirect()->back()->with($cosplay_data);
+        $datas = $this->service->findOne($id);
+        $datas->cosplay = $this->s3Service->findOne($datas->cosplay_path);
+        $datas->pinture = $this->s3Service->findOne($datas->pinture_path);
+        return view('hqs.show')->with('datas', $datas);
+    }
+
+    public function create()
+    {
+        return view('upload.cosplays')->with('route', 'cosplays.store');
+    }
+
+    public function store(CosplayS3Request $s3request, CosplayStoreRequest $storeRequest)
+    {
+        $paths = $this->s3Service->store(CosplayS3DTO::makeFromRequest($s3request, 'cosplays'));
+
+        $storeRequest['cosplay_path'] = $paths[0];
+        $storeRequest['pinture_path'] = $paths[1];
+        $this->service->store(CosplayStoreDTO::makeFromRequest($storeRequest));
+
+        return redirect()
+                ->route('cosplays.index')
+                ->with('message', 'Cadastrado com sucesso!');        
+    }
+
+    public function edit($id)
+    {
+        $cosplay = $this->service->findOne($id);
+        if($cosplay) return view('cosplays.edit');
+
+        return back()->with('message', 'Não foi possível encontrar o item.');
     }
 
     public function update(CosplayUpdateRequest $request, string $id)
     {
-        $this->service->update(
+        $cosplay = $this->service->update(
             CosplayUpdateDTO::makeFromRequest($request, $id)
         );
-        return redirect()->back();
+
+        if ($cosplay) {
+            return redirect()
+                ->route('cosplays.index')
+                ->with('message', 'Atualizado com sucesso!');
+        }
+
+        return back()->with('message', 'Não foi possível atualizar');
     }
 
     public function destroy(string $id)
     {
-        /**
-         *@var Cosplay
-         */
-        $cosplay = $this->service->findOne($id);
-        $this->s3Service->delete($cosplay->cosplay_path);
-        $cosplay->delete();
-        return redirect()->back();
+        $deleted = $this->service->delete($id);
+
+        if($deleted) {
+            return redirect()->route('cosplays.index')->with('sucess', 'Deletado com sucesso');
+        }
+
+        return back()->with('message', 'Não foi possível deletar');
     }
 }
