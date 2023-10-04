@@ -5,12 +5,13 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>iPhone 14 Plus - 3</title>
+  <title>HQs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600%2C800"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600%2C800"/>
-  <link rel="stylesheet" href="./styles/iphone-14-plus-3.css"/>
+  @include('components.css.hqs')
 </head>
 <body>
+  @include('components.header')
 <div class="iphone-14-plus-3-ShM">
   <div class="iphone-14-plus-1-BQ3">
     <div class="auto-group-1y2f-h7V">
@@ -23,7 +24,7 @@
           
           </p>
         </div>
-        <img class="logo-ifro-cacoal-1-zw9" src="./assets/logo-ifro-cacoal-1.png"/>
+        <img class="logo-ifro-cacoal-1-zw9" src="https://snct-ifro-2023.s3.sa-east-1.amazonaws.com/system/logo-ifro-cacoal-1.png"/>
       </div>
       <div class="botoes-redirect-Jwq">
         <div class="frame-4-RmZ">Voltar para o Menu</div>
@@ -60,23 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="frame-8-4Mu">
-        <p class="crditos-back-end-do-site-jlio-cesar-2-b-informtica-front-end-do-site-genildo-kau-2-a-informtica-ajustes-tcnicos-kerollayne-2-a-informtica-e-pedro-2-b-informtica-integraes-e-servidor-eubert-e-sayro-2-a-informtica-Pf5">
-        Créditos
-        <br/>
-        
-        <br/>
-        Back-end do Site - Júlio Cesar / 2º B informática
-        <br/>
-        Front-end do Site - Genildo, Kauê / 2º A informática
-        <br/>
-        Ajustes Técnicos - Kerollayne / 2º A informática
-        <br/>
-        e Pedro / 2º B informática
-        <br/>
-        Integrações e Servidor - Eubert e Sayro / 2º A informática
-        </p>
-      </div>
+      @include('components.footer')
     </div>
   </div>
 </div>

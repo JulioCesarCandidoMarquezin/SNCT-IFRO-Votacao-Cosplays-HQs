@@ -10,17 +10,14 @@
 <body>
     @extends('components.upload')
     @section('content')
-        <label for="autor_name">Nome:</label>
+        <label for="autor_name">Nome dos autores:</label>
         <input type="text" name="autor_name" autocomplete="off">
 
-        <label for="class_name">Nome da Classe:</label>
+        <label for="class_name">Nome da turma:</label>
         <input type="text" name="class_name" autocomplete="off">
 
         <label for="pinture_name">Nome Original da Pintura:</label>
         <input type="text" name="pinture_name" autocomplete="off">
-
-        <label for="description">Descrição:</label>
-        <textarea name="description" rows="4"></textarea>
 
         <label for="cosplay">Cosplay:</label>
         <input type="file" name="cosplay"  accept="image/*">

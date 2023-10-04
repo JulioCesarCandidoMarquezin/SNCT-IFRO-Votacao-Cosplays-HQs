@@ -8,9 +8,10 @@
   <title>iPhone 14 Plus - 4</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600%2C800"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600%2C800"/>
-  <link rel="stylesheet" href="./styles/iphone-14-plus-4.css"/>
+  @include('components.css.cosplays')
 </head>
 <body>
+  @include('components.header')
 <div class="iphone-14-plus-4-E4f">
   <div class="iphone-14-plus-1-Zcj">
     <div class="auto-group-d599-ghM">
@@ -23,7 +24,7 @@
           
           </p>
         </div>
-        <img class="logo-ifro-cacoal-1-XV1" src="./assets/logo-ifro-cacoal-1-zbh.png"/>
+        <img class="logo-ifro-cacoal-1-XV1" src="https://snct-ifro-2023.s3.sa-east-1.amazonaws.com/system/logo-ifro-cacoal-1-zbh.png"/>
       </div>
       <div class="botoes-redirect-EuD">
         <div class="frame-4-AH5">Voltar para o Menu</div>
@@ -60,23 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="frame-8-NBR">
-        <p class="crditos-back-end-do-site-jlio-cesar-2-b-informtica-front-end-do-site-genildo-kau-2-a-informtica-ajustes-tcnicos-kerollayne-2-a-informtica-e-pedro-2-b-informtica-integraes-e-servidor-eubert-e-sayro-2-a-informtica-EjR">
-        Créditos
-        <br/>
-        
-        <br/>
-        Back-end do Site - Júlio Cesar / 2º B informática
-        <br/>
-        Front-end do Site - Genildo, Kauê / 2º A informática
-        <br/>
-        Ajustes Técnicos - Kerollayne / 2º A informática
-        <br/>
-        e Pedro / 2º B informática
-        <br/>
-        Integrações e Servidor - Eubert e Sayro / 2º A informática
-        </p>
-      </div>
+      @include('components.footer')
     </div>
   </div>
 </div>
